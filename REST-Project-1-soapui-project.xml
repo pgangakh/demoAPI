@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="0b6d0671-a056-4e9f-8759-effc5a9eb894" activeEnvironment="Default" name="Project-Rest2" resourceRoot="" soapui-version="5.6.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="a36e9b41-c9bd-48c9-b9b4-3fbb38587a9a" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://rest-api.upskills.in" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://rest-api.upskills.in</con:endpoint></con:endpoints><con:resource name="Register" path="/api/rest/register" id="61bec27e-8c59-40c8-84ed-d5d57283474f"><con:settings/><con:parameters/><con:method name="Register 1" id="cf306769-c2d9-4dff-9de2-f505f99bd5d2" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:reg="http://rest-api.upskills.in/api/rest/register">reg:Fault</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="4d4af6df-16dd-4ac9-8687-f1d45c8325e6" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer 87a8e857034b32dd9e36208c1f769e46e19c1ba2" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://rest-api.upskills.in</con:endpoint><con:request>{
+"firstname": "Demo",
+"lastname": "User05",
+"email": "demouser05@gmail.com",
+"password": "password",
+"confirm": "password", 
+"telephone": "1-541-754-3010"
+}</con:request><con:originalUri>http://rest-api.upskills.in/api/rest/register</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="4e3757aa-27ac-4cf7-a5aa-439862f04dc8" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://rest-api.upskills.in" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://rest-api.upskills.in</con:endpoint></con:endpoints><con:resource name="Review" path="/api/rest/products/{product_id}/review" id="4cc6c125-acd6-4811-9000-2385bbb95bf7"><con:settings/><con:parameters><con:parameter><con:name>product_id</con:name><con:value>product_id</con:value><con:style>TEMPLATE</con:style><con:default>product_id</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Review 1" id="1d79a980-9231-43d6-979a-1e334ec00611" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>405</con:status><con:params/><con:element xmlns:rev="http://rest-api.upskills.in/api/rest/products/product_id/review">rev:Fault</con:element></con:representation><con:request name="Request 1" id="618a496b-035a-4095-b3dc-91a35d535a89" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer 87a8e857034b32dd9e36208c1f769e46e19c1ba2" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://rest-api.upskills.in</con:endpoint><con:request>{
+"model": "Lenovo Ideapad Laptop",
+ "quantity": "1000",
+ "price": "44000.00",
+ "product_description": [
+    {
+      "name": "Lenovo IdeaPad S100", 
+      "meta_title": "Lenovo IdeaPad S100"
+    }
+  ]
+}</con:request><con:originalUri>http://rest-api.upskills.in/api/rest/products/product_id/review</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="product_id" value="product_id" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>product_id</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="37a05083-c685-453d-ab65-3ea7cef6481f" name="TestSuite-T032"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="fc9748cf-f814-4410-88aa-1215c07ca5c2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC-032" searchProperties="true"><con:settings/><con:testStep type="groovy" name="DataBase Testing" id="c31f9e2e-011a-45de-b7d9-185efbbe5fe5"><con:settings/><con:config><script>import groovy.sql.Sql
+
+def accesstoken = "87a8e857034b32dd9e36208c1f769e46e19c1ba2"
+
+//we have to work with JDBC we use some details like driver, name , password, url
+
+def url = 'jdbc:mysql://localhost:3306/newtable'
+def user = 'root'
+def password = 'root'
+def driver = 'com.mysql.jdbc.Driver'
+
+//This is veryy vrry important import Driver to connect JDBC with request
+com.eviware.soapui.support.GroovyUtils.registerJdbcDriver(driver)
+
+def sql = Sql.newInstance(url,user,password,driver)
+sql.eachRow("select * from customerProduct")
+{
+    row ->
+    def id = "$row.id"
+    log.info "$id"
+    def get  = new URL("http://rest-api.upskills.in/api/rest_admin/customers/"+id).openConnection();
+    get.setRequestProperty("Authorization","bearer "+accesstoken)
+    def getRC = get.getResponseCode();
+    log.info "$getRC"
+    if(getRC.equals(200))
+    {
+        log.info(get.getInputStream().getText());
+    }else
+    {
+        log.info ("Something iswrong")
+    }
+}
+sql.close();
+</script></con:config></con:testStep><con:testStep type="restrequest" name="Customer" id="c9fbc630-4dfd-4ab5-8c2d-cde4e753fa9c"><con:settings/><con:config service="http://rest-api.upskills.in" resourcePath="/api/rest/register" methodName="Register 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Customer" id="4d4af6df-16dd-4ac9-8687-f1d45c8325e6" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer 87a8e857034b32dd9e36208c1f769e46e19c1ba2" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://rest-api.upskills.in</con:endpoint><con:request>{
+"firstname": "Demo",
+"lastname": "User05",
+"email": "demouser05@gmail.com",
+"password": "password",
+"confirm": "password", 
+"telephone": "1-541-754-3010"
+}</con:request><con:originalUri>http://rest-api.upskills.in/api/rest/register</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Products" id="02c18dcd-1356-472d-a65c-90782f452204"><con:settings/><con:config service="http://rest-api.upskills.in" resourcePath="/api/rest/products/{product_id}/review" methodName="Review 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Products" id="618a496b-035a-4095-b3dc-91a35d535a89" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer 87a8e857034b32dd9e36208c1f769e46e19c1ba2" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://rest-api.upskills.in</con:endpoint><con:request>{
+"model": "Lenovo Ideapad Laptop",
+ "quantity": "1000",
+ "price": "44000.00",
+ "product_description": [
+    {
+      "name": "Lenovo IdeaPad S100", 
+      "meta_title": "Lenovo IdeaPad S100"
+    }
+  ]
+}</con:request><con:originalUri>http://rest-api.upskills.in/api/rest/products/product_id/review</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="product_id" value="product_id" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>product_id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
